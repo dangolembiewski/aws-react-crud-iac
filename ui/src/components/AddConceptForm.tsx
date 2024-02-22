@@ -18,15 +18,22 @@ const AddConceptForm = ({onAddConcept}: AddConceptProps) => {
   // Update the state on a changeEvent
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { name, value } = e.target;
-    if (name == "parentIds" || name == "childIds"){
-        let newValue = value;
+    let newValue = value;
+    if (name === "parentIds" || name === "childIds"){
         // Replace consecutive commas with a single comma
         newValue = value.replace(/,+/g, ',');
         // Remove any non-numeric characters or extra commas
         newValue = newValue.replace(/[^0-9,]/g, '');
         //remove whitespace and split by comma
         const idsArray = newValue.split(',').map(id => id.trim());
-        setConcept(prevConcept => ({ ...prevConcept, [name]: idsArray }));
+        setConcept({ ...concept, [name]: idsArray });
+    }
+    else if (name === "alternateNames"){
+        // Replace consecutive commas with a single comma
+        newValue = value.replace(/,+/g, ',');
+        //split by comma
+        const namesArray = newValue.split(',');
+        setConcept({ ...concept, [name]: namesArray });
     }
     else{
         setConcept({ ...concept, [name]: value });
@@ -34,7 +41,7 @@ const AddConceptForm = ({onAddConcept}: AddConceptProps) => {
   };
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+    e.preventDefault(); // prevent page refresh
     onAddConcept(concept);
     // Reset form fields 
     setConcept({

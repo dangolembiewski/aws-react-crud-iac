@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AddConceptForm from './components/AddConceptForm';
 import { Concept } from './types/Concept';
 
 function App() {
 
   function handleSubmit(entry: Concept) {
+    console.log("App.tsx handleSubmit");
     console.log(entry);
   }
   
