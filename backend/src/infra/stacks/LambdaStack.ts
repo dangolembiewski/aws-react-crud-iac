@@ -5,6 +5,7 @@ import { join } from 'path';
 import { LambdaIntegration } from 'aws-cdk-lib/aws-apigateway';
 import { ITable } from 'aws-cdk-lib/aws-dynamodb';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
+import { PolicyStatement, Effect } from 'aws-cdk-lib/aws-iam';
 
 interface LambdaStackProps extends StackProps {
   conceptsTable: ITable
@@ -25,6 +26,15 @@ export class LambdaStack extends Stack {
           TABLE_NAME: props.conceptsTable.tableName
       }
     }) 
+
+    //give lambda the right to access dynamoDB
+    conceptsLambda.addToRolePolicy(new PolicyStatement({
+      effect: Effect.ALLOW,
+      resources: [props.conceptsTable.tableArn],
+      actions: [
+        'dynamodb:PutItem'
+      ]
+    }))
 
     this.conceptsLambdaIntegration = new LambdaIntegration(conceptsLambda)
   }

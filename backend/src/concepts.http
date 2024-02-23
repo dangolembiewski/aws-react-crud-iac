@@ -2,4 +2,9 @@ GET https://gh649qzq1j.execute-api.us-east-1.amazonaws.com/prod/concepts
 ###
 
 POST https://gh649qzq1j.execute-api.us-east-1.amazonaws.com/prod/concepts
+content-type: application/json
+// HTTP request message syntax requires a blank line (CRLF) between the headers and the message body
+{
+  "location": "Testing"
+}
 ###
