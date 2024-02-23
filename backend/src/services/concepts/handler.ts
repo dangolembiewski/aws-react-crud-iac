@@ -1,6 +1,7 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { APIGatewayProxyEvent, APIGatewayProxyResult, Context } from "aws-lambda";
 import { postConcepts } from "./PostConcepts";
+import { getConcepts } from "./GetConcepts";
 
 // to reuse this connection, keep outside handler
 const ddbClient = new DynamoDBClient({});
@@ -12,11 +13,12 @@ async function handler(event: APIGatewayProxyEvent, context: Context): Promise<A
   try{
     switch (event.httpMethod) {
       case 'GET':
-        message = 'Hello from GET!'
-        break;
+        const getResponse = await getConcepts(event, ddbClient);
+        console.log(getResponse);
+        return getResponse;
       case 'POST':
-        const response = postConcepts(event, ddbClient);
-        return response;
+        const postResponse = await postConcepts(event, ddbClient);
+        return postResponse;
       default: 
         break;
     }

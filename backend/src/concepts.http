@@ -8,3 +8,6 @@ content-type: application/json
   "location": "Testing"
 }
 ###
+
+GET https://gh649qzq1j.execute-api.us-east-1.amazonaws.com/prod/concepts
+###

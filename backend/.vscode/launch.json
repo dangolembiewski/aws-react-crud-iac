@@ -8,6 +8,7 @@
           "type": "node",
           "request": "launch",
           "name": "Debug local file",
+          "outputCapture": "std", // debugger was giving error: No debugger available, can not send 'variables'
           "runtimeArgs": [
               "-r",
               "ts-node/register"
@@ -16,7 +17,8 @@
               "${relativeFile}"
           ],
           "env": {
-              "AWS_REGION": "us-east-1"
+              "AWS_REGION": "us-east-1",
+              "TABLE_NAME": "ConceptsTable-0e78e5957741"
           }
       }
   ]
