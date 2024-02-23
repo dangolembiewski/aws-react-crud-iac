@@ -3,14 +3,15 @@ import { LambdaIntegration, RestApi } from "aws-cdk-lib/aws-apigateway";
 import { Construct } from "constructs";
 
 interface ApiStackProps extends StackProps {
-  helloLambdaIntegration: LambdaIntegration
+  conceptsLambdaIntegration: LambdaIntegration
 }
 
 export class ApiStack extends Stack {
   constructor(scope: Construct, id: string, props: ApiStackProps){
     super(scope, id, props);
-    const api = new RestApi(this, 'Concepts');
+    const api = new RestApi(this, 'ConceptsApi');
     const conceptsResource = api.root.addResource('concepts');
-    conceptsResource.addMethod('GET' ,props.helloLambdaIntegration)
+    conceptsResource.addMethod('GET' ,props.conceptsLambdaIntegration)
+    conceptsResource.addMethod('POST' ,props.conceptsLambdaIntegration)
   }
 }
