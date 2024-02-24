@@ -5,6 +5,7 @@ import { getConcepts } from "./GetConcepts";
 import { updateConcepts } from "./UpdateConcepts";
 import { deleteConcepts } from "./DeleteConcepts";
 import { MissingFieldError } from "../shared/Validator";
+import { addCorsHeader } from "../shared/Utils";
 
 // to reuse this connection, keep outside handler
 const ddbClient = new DynamoDBClient({});
@@ -47,7 +48,7 @@ async function handler(event: APIGatewayProxyEvent, context: Context): Promise<A
       body: error.message
     }
   }
-  
+  addCorsHeader(response)
   return response;
 }
 
