@@ -13,5 +13,7 @@ export class ApiStack extends Stack {
     const conceptsResource = api.root.addResource('concepts');
     conceptsResource.addMethod('GET' ,props.conceptsLambdaIntegration)
     conceptsResource.addMethod('POST' ,props.conceptsLambdaIntegration)
+    conceptsResource.addMethod('PUT', props.conceptsLambdaIntegration);
+    conceptsResource.addMethod('DELETE', props.conceptsLambdaIntegration);
   }
 }

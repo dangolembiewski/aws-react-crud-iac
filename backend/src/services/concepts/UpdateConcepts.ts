@@ -9,7 +9,7 @@ export async function updateConcepts(event: APIGatewayProxyEvent, ddbClient: Dyn
     const conceptId = event.queryStringParameters['id'];
     // key to update in the db
     const requestBodyKey = Object.keys(parsedBody)[0];
-    // value to update
+    // value to update from request body 
     const requestBodyValue = parsedBody[requestBodyKey];
 
     const updateResult = await ddbClient.send(new UpdateItemCommand({
@@ -18,20 +18,21 @@ export async function updateConcepts(event: APIGatewayProxyEvent, ddbClient: Dyn
         'id': {S: conceptId}
       },
       // specify what to update
-      UpdateExpression: 'set #zzzNew = :new',
+      UpdateExpression: 'set #New = :new',
       ExpressionAttributeValues: {
         ':new': {
           S: requestBodyValue
         }
       },
       ExpressionAttributeNames: {
-        '#zzzNew': requestBodyKey
+        '#New': requestBodyKey
       },
       ReturnValues: 'UPDATED_NEW'
     }));
+    console.log(updateResult);
 
     return {
-      statusCode: 204,
+      statusCode: 201,
       body: JSON.stringify(updateResult.Attributes)
     }
 

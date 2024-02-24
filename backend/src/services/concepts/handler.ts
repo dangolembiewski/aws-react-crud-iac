@@ -4,47 +4,50 @@ import { postConcepts } from "./PostConcepts";
 import { getConcepts } from "./GetConcepts";
 import { updateConcepts } from "./UpdateConcepts";
 import { deleteConcepts } from "./DeleteConcepts";
+import { MissingFieldError } from "../shared/Validator";
 
 // to reuse this connection, keep outside handler
 const ddbClient = new DynamoDBClient({});
 
 async function handler(event: APIGatewayProxyEvent, context: Context): Promise<APIGatewayProxyResult> {
 
-  let message: string;
+  let response: APIGatewayProxyResult;
 
   try{
     switch (event.httpMethod) {
       case 'GET':
         const getResponse = await getConcepts(event, ddbClient);
-        console.log(getResponse);
-        return getResponse;
+        response = getResponse;
+        break;
       case 'POST':
         const postResponse = await postConcepts(event, ddbClient);
-        return postResponse;
+        response = postResponse;
+        break;
       case 'PUT':
         const putResponse = await updateConcepts(event, ddbClient);
-        console.log(putResponse);
-        return putResponse;
+        response = putResponse;
+        break;
       case 'DELETE':
         const deleteResponse = await deleteConcepts(event, ddbClient);
-        console.log(deleteResponse);
-        return deleteResponse;
+        response = deleteResponse;
+        break;
       default: 
         break;
     }
   } catch (error) {
     console.error(error);
+    if (error instanceof MissingFieldError) {
+      return {
+          statusCode: 400,
+          body: error.message
+      }
+    }
     return {
       statusCode: 500,
-      body: JSON.stringify(error.message)
+      body: error.message
     }
   }
-
-  const response: APIGatewayProxyResult = {
-    statusCode: 200,
-    body: JSON.stringify(message)
-  }
-
+  
   return response;
 }
 
