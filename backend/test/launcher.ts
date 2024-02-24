@@ -5,11 +5,11 @@ process.env.AWS_REGION = "us-east-1"
 process.env.TABLE_NAME = "ConceptsTable-0e78e5957741"
 
 handler({
-  httpMethod: 'GET',
+  httpMethod: 'DELETE',
   queryStringParameters: {
     id: 'cd9c885a-ec24-4861-93ce-a3bbbe547279'
   }
   // body: JSON.stringify({
-  //   location: 'Athens'
+  //   location: 'Testing Update'
   // })
 } as any,{} as any);

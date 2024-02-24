@@ -9,5 +9,10 @@ content-type: application/json
 }
 ###
 
-GET https://gh649qzq1j.execute-api.us-east-1.amazonaws.com/prod/concepts
+PUT https://gh649qzq1j.execute-api.us-east-1.amazonaws.com/prod/concepts
+content-type: application/json
+
+{
+  "location": "testing update"
+}
 ###
