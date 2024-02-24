@@ -1,6 +1,6 @@
 import React from 'react';
 import AddConceptForm from './components/AddConceptForm';
-import { Concept } from './types/Concept';
+import { Concept } from './model/Concept';
 
 function App() {
 

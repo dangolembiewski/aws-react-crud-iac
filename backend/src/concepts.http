@@ -4,7 +4,6 @@ GET https://gh649qzq1j.execute-api.us-east-1.amazonaws.com/prod/concepts
 POST https://gh649qzq1j.execute-api.us-east-1.amazonaws.com/prod/concepts
 content-type: application/json
 
-// HTTP request message syntax requires a blank line (CRLF) between the headers and the message body
 {
   "displayName": "Glaucoma"
 }
@@ -14,6 +13,14 @@ PUT https://gh649qzq1j.execute-api.us-east-1.amazonaws.com/prod/concepts?id=ba7c
 content-type: application/json
 
 {
-  "name": "Glaucoma2"
+  "name": "Glaucoma33"
 }
+###
+
+GET https://gh649qzq1j.execute-api.us-east-1.amazonaws.com/prod/concepts?id=ba7c041e-0b34-4a56-b296-e9d2bc802c30
+content-type: application/json
+###
+
+DELETE https://gh649qzq1j.execute-api.us-east-1.amazonaws.com/prod/concepts?id=ba7c041e-0b34-4a56-b296-e9d2bc802c30
+content-type: application/json
 ###

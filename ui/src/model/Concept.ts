@@ -1,5 +1,5 @@
 export type Concept = {
-  conceptId: number;
+  id: string;
   displayName: string;
   description: string;
   parentIds: string[];

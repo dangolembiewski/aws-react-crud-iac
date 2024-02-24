@@ -1,0 +1,15 @@
+{
+  "DataStack": {
+    "ExportsOutputRefConceptsTable75E07E08CAABBD23": "ConceptsTable-0e78e5957741",
+    "ExportsOutputFnGetAttConceptsTable75E07E08Arn663F78F2": "arn:aws:dynamodb:us-east-1:654654249945:table/ConceptsTable-0e78e5957741"
+  },
+  "LambdaStack": {
+    "ExportsOutputFnGetAttConceptsLambdaB6B3556FArnD1C2731B": "arn:aws:lambda:us-east-1:654654249945:function:LambdaStack-ConceptsLambdaB6B3556F-2mCebLHnUtFg"
+  },
+  "ApiStack": {
+    "ConceptsApiEndpoint8A639911": "https://gh649qzq1j.execute-api.us-east-1.amazonaws.com/prod/"
+  },
+  "UiDeploymentStack": {
+    "ConceptsUrl": "d13bnhfa5niiid.cloudfront.net"
+  }
+}

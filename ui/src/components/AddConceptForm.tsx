@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Concept } from '../types/Concept';
+import { Concept } from '../model/Concept';
 
 type AddConceptProps = {
   onAddConcept: (concept: Concept) => void;
@@ -7,7 +7,7 @@ type AddConceptProps = {
 
 const AddConceptForm = ({onAddConcept}: AddConceptProps) => {
   const [concept, setConcept] = useState<Concept>({
-    conceptId: 0,
+    id: '0',
     displayName: '',
     description: '',
     parentIds: [],
@@ -45,7 +45,7 @@ const AddConceptForm = ({onAddConcept}: AddConceptProps) => {
     onAddConcept(concept);
     // Reset form fields 
     setConcept({
-        conceptId: 0,
+        id: '0',
         displayName: '',
         description: '',
         parentIds: [],
@@ -60,9 +60,9 @@ const AddConceptForm = ({onAddConcept}: AddConceptProps) => {
           <label>
               Concept ID:
               <input
-                  type="number"
-                  name="conceptId"
-                  value={concept.conceptId}
+                  type="text"
+                  name="id"
+                  value={concept.id}
                   onChange={handleChange}
                   min={0}
               />
