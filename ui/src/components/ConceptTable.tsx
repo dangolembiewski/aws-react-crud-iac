@@ -26,6 +26,9 @@ function ConceptTable({ concepts, onEditConcept, onDeleteConcept }: ConceptTable
             <TableCell>ID</TableCell>
             <TableCell>Display Name</TableCell>
             <TableCell>Description</TableCell>
+            <TableCell>Parent IDs</TableCell>
+            <TableCell>Child IDs</TableCell>
+            <TableCell>Alternate Names</TableCell>
             <TableCell>Actions</TableCell>
           </TableRow>
         </TableHead>
@@ -35,6 +38,9 @@ function ConceptTable({ concepts, onEditConcept, onDeleteConcept }: ConceptTable
               <TableCell>{concept.id}</TableCell>
               <TableCell>{concept.displayName}</TableCell>
               <TableCell>{concept.description}</TableCell>
+              <TableCell>{Array.isArray(concept.parentIds) ? concept.parentIds.join(', ') : ''}</TableCell>
+              <TableCell>{Array.isArray(concept.childIds) ? concept.childIds.join(', '): ''}</TableCell>
+              <TableCell>{Array.isArray(concept.childIds) ? concept.alternateNames.join(', '): ''}</TableCell>
               <TableCell>
                 <Button variant="contained" color="primary" onClick={() => handleEdit(concept)}>Edit</Button>
                 <Button variant="contained" color="secondary" onClick={() => handleDelete(concept.id)}>Delete</Button>

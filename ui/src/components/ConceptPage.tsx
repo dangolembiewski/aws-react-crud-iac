@@ -18,8 +18,8 @@ function ConceptPage() {
   async function fetchConcepts(){
     try {
       const responseData = await conceptService.getConcepts();
+      console.log(responseData);
       setConcepts(responseData);
-      //alert('Get Concepts Successful');
     } catch (error: any) {
       console.error('Error getting concepts:', error.message);
       alert('Error getting concepts: ' + error.message);

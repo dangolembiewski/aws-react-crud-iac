@@ -23,8 +23,8 @@ export async function updateConcepts(event: APIGatewayProxyEvent, ddbClient: Dyn
         ExpressionAttributeValues: {
           ":description": body.description ? { S: body.description } : { NULL: true },
           ":displayName": { S: body.displayName },
-          ":parentIds": body.parentIds ? { NS: body.parentIds }: { NULL: true },
-          ":childIds": body.childIds ? { NS: body.childIds }: { NULL: true },
+          ":parentIds": body.parentIds ? { SS: body.parentIds }: { NULL: true },
+          ":childIds": body.childIds ? { SS: body.childIds }: { NULL: true },
           ":alternateNames": body.alternateNames ? { SS: body.alternateNames }: { NULL: true }
         }
     };

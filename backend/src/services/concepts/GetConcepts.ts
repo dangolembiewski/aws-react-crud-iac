@@ -16,6 +16,10 @@ export async function getConcepts(event: APIGatewayProxyEvent, ddbClient: Dynamo
       }))
       if (getItemResponse.Item){
         const unmarshalledItem = unmarshall(getItemResponse.Item)
+        // Convert Sets to Arrays
+        unmarshalledItem.parentIds = Array.from(unmarshalledItem.parentIds);
+        unmarshalledItem.childIds = Array.from(unmarshalledItem.childIds);
+        unmarshalledItem.alternateNames = Array.from(unmarshalledItem.alternateNames);
         return {
           statusCode: 200,
           body: JSON.stringify(unmarshalledItem)
@@ -34,13 +38,19 @@ export async function getConcepts(event: APIGatewayProxyEvent, ddbClient: Dynamo
     }
   }
 
-
   const result = await ddbClient.send(new ScanCommand({
     // get table name from lambda ENVIRONMENT
     TableName: process.env.TABLE_NAME,
   }));
   console.log(result.Items);
-  const unmarshalledItems = result.Items?.map(item => unmarshall(item));
+  const unmarshalledItems = result.Items?.map(item => {
+    const unmarshalledItem = unmarshall(item);
+    // Convert Sets to Arrays
+    unmarshalledItem.parentIds = Array.from(unmarshalledItem.parentIds);
+    unmarshalledItem.childIds = Array.from(unmarshalledItem.childIds);
+    unmarshalledItem.alternateNames = Array.from(unmarshalledItem.alternateNames);
+    return unmarshalledItem;
+  });
   console.log(unmarshalledItems);
 
   return {
