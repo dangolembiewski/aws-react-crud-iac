@@ -7,7 +7,7 @@ import { validateAsConceptEntry } from "../shared/Validator";
 export async function postConcepts(event: APIGatewayProxyEvent, ddbClient: DynamoDBClient): Promise<APIGatewayProxyResult> {
 
   // TODO: this is supposed to marshall for me but its not working
-  //const ddbDocClient = DynamoDBDocumentClient.from(ddbClient);
+  // const ddbDocClient = DynamoDBDocumentClient.from(ddbClient);
 
   const randomId = v4();
   const item = JSON.parse(event.body);
