@@ -7,7 +7,13 @@ export async function updateConcepts(event: APIGatewayProxyEvent, ddbClient: Dyn
     const body = JSON.parse(event.body);
     const id = event.queryStringParameters.id;
 
-    //TODO: this is strict for some reason. Not allowing duplicates or empty strings. Need to change this
+    if (!body.displayName || body.displayName.trim() === '') {
+      return {
+        statusCode: 400,
+        body: JSON.stringify('displayName cannot be null or empty')
+      };
+    }
+
     const params: UpdateItemCommandInput = {
         TableName: process.env.TABLE_NAME, 
         Key: {
@@ -15,11 +21,11 @@ export async function updateConcepts(event: APIGatewayProxyEvent, ddbClient: Dyn
         },
         UpdateExpression: "SET description = :description, displayName = :displayName, parentIds = :parentIds, childIds = :childIds, alternateNames = :alternateNames",
         ExpressionAttributeValues: {
-            ":description": { S: body.description },
-            ":displayName": { S: body.displayName },
-            ":parentIds": { NS: body.parentIds },
-            ":childIds": { NS: body.childIds },
-            ":alternateNames": { SS: body.alternateNames }
+          ":description": body.description ? { S: body.description } : { NULL: true },
+          ":displayName": { S: body.displayName },
+          ":parentIds": body.parentIds ? { NS: body.parentIds }: { NULL: true },
+          ":childIds": body.childIds ? { NS: body.childIds }: { NULL: true },
+          ":alternateNames": body.alternateNames ? { SS: body.alternateNames }: { NULL: true }
         }
     };
 

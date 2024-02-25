@@ -27,6 +27,7 @@ export class ConceptService {
 
   public async updateConcept(concept: Concept): Promise<string> {
     try {
+      console.log(concept);
       const response = await axios.put(`${conceptsUrl}?id=${concept.id}`, concept);
       return response.data.id; 
     } catch (error) {

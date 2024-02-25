@@ -8,14 +8,7 @@ type ConceptFormProps = {
 };
 
 function ConceptForm({ concept, onSubmit }: ConceptFormProps){
-  // const tmpconcept: Concept = {
-  //   id: '0',
-  //   displayName: '',
-  //   description: '',
-  //   parentIds: [],
-  //   childIds: [],
-  //   alternateNames: [],
-  // };
+
   const [formConcept, setFormConcept] = useState<Concept>(concept);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -33,7 +26,6 @@ function ConceptForm({ concept, onSubmit }: ConceptFormProps){
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSubmit(formConcept);
-    setFormConcept(concept);
   };
 
   return (

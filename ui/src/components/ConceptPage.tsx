@@ -4,7 +4,6 @@ import AddConceptForm from './forms/AddConceptForm';
 import UpdateConceptForm from './forms/UpdateConceptForm';
 import { ConceptService } from '../service/ConceptService';
 import ConceptDialog from './dialogs/ConceptDialog'; 
-import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import ConceptTable from './ConceptTable';
 
 
@@ -46,9 +45,11 @@ function ConceptPage() {
     try {
       await conceptService.updateConcept(concept);
       alert('Concept updated successfully');
+      setOpenUpdateConcept(false);
       // fetch and load the paginated data?
     } catch (error: any) {
       console.log('Error updating concept:', error.message);
+      // TODO: Better error messages for user
       alert(error.response.data);
     }
   }  

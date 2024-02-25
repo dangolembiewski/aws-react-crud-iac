@@ -6,12 +6,12 @@ process.env.TABLE_NAME = "ConceptsTable-0e78e5957741"
 
 handler({
   httpMethod: 'PUT',
-  queryStringParameters: { id: "4cbc953b-c3d4-4797-b01c-15309b406053" },
+  queryStringParameters: { id: "4cb5a4e3-2e6d-4aa7-8bf4-ad7b682e44ec" },
   body: JSON.stringify({  
-    description: 'YTREWQ',
-    displayName: 'QWERTY',
-    parentIds: ["5","1","6"], 
-    childIds: ["0","2","5"],
-    alternateNames: ["FGHJK", "lkjhgfd"]
+    description: '',
+    displayName: null,
+    parentIds: null, 
+    childIds: null,
+    alternateNames: null,
   })
 } as any, {} as any);
