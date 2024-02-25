@@ -5,7 +5,7 @@ type UpdateConceptProps = {
   onUpdateConcept: (concept: Concept) => void;
 };
 
-const UpdateConceptForm = ({onUpdateConcept}: UpdateConceptProps) => {
+function UpdateConceptForm({onUpdateConcept}: UpdateConceptProps){
   const [concept, setConcept] = useState<Concept>({
     id: '0',
     displayName: '',

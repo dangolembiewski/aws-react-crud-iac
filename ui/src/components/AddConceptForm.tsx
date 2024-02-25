@@ -5,7 +5,7 @@ type AddConceptProps = {
   onAddConcept: (concept: Concept) => void;
 };
 
-const AddConceptForm = ({onAddConcept}: AddConceptProps) => {
+function AddConceptForm({onAddConcept}: AddConceptProps)  {
   const [concept, setConcept] = useState<Concept>({
     id: '0',
     displayName: '',
