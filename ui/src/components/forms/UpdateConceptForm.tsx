@@ -4,17 +4,10 @@ import ConceptForm from './shared/ConceptForm';
 
 type UpdateConceptProps = {
   onUpdateConcept: (concept: Concept) => void;
+  concept: Concept;
 };
 
-function UpdateConceptForm({ onUpdateConcept }: UpdateConceptProps) {
-  const concept: Concept = {
-    id: '0',
-    displayName: '',
-    description: '',
-    parentIds: [],
-    childIds: [],
-    alternateNames: [],
-  };
+function UpdateConceptForm({ onUpdateConcept, concept }: UpdateConceptProps) {
 
   return <ConceptForm concept={concept} onSubmit={onUpdateConcept} />;
 };

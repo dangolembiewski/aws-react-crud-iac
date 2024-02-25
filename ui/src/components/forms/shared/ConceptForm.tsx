@@ -8,6 +8,14 @@ type ConceptFormProps = {
 };
 
 function ConceptForm({ concept, onSubmit }: ConceptFormProps){
+  // const tmpconcept: Concept = {
+  //   id: '0',
+  //   displayName: '',
+  //   description: '',
+  //   parentIds: [],
+  //   childIds: [],
+  //   alternateNames: [],
+  // };
   const [formConcept, setFormConcept] = useState<Concept>(concept);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -70,7 +78,7 @@ function ConceptForm({ concept, onSubmit }: ConceptFormProps){
             label="Parent IDs (comma-separated)"
             type="text"
             name="parentIds"
-            value={formConcept.parentIds.join(',')}
+            value={Array.isArray(formConcept.parentIds) ? formConcept.parentIds.join(','): ''}
             onChange={handleChange}
             variant="outlined"
           />
@@ -81,7 +89,7 @@ function ConceptForm({ concept, onSubmit }: ConceptFormProps){
             label="Child IDs (comma-separated)"
             type="text"
             name="childIds"
-            value={formConcept.childIds.join(',')}
+            value={Array.isArray(formConcept.childIds) ? formConcept.childIds.join(','): ''}
             onChange={handleChange}
             variant="outlined"
           />
@@ -92,7 +100,7 @@ function ConceptForm({ concept, onSubmit }: ConceptFormProps){
             label="Alternate Names (comma-separated)"
             type="text"
             name="alternateNames"
-            value={formConcept.alternateNames.join(',')}
+            value={Array.isArray(formConcept.alternateNames) ? formConcept.alternateNames.join(',') : ''}
             onChange={handleChange}
             variant="outlined"
           />

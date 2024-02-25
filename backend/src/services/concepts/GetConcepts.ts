@@ -1,6 +1,6 @@
-import { DynamoDBClient, GetItemCommand, PutItemCommand, ScanCommand } from "@aws-sdk/client-dynamodb";
+import { DynamoDBClient, GetItemCommand, ScanCommand } from "@aws-sdk/client-dynamodb";
+import { unmarshall } from "@aws-sdk/util-dynamodb";
 import { APIGatewayProxyEvent, APIGatewayProxyResult, Context } from "aws-lambda";
-import { v4 } from "uuid";
 
 export async function getConcepts(event: APIGatewayProxyEvent, ddbClient: DynamoDBClient): Promise<APIGatewayProxyResult> {
 
@@ -15,9 +15,10 @@ export async function getConcepts(event: APIGatewayProxyEvent, ddbClient: Dynamo
         }
       }))
       if (getItemResponse.Item){
+        const unmarshalledItem = unmarshall(getItemResponse.Item)
         return {
           statusCode: 200,
-          body: JSON.stringify(getItemResponse.Item)
+          body: JSON.stringify(unmarshalledItem)
         }
       } else {
         return {
@@ -39,9 +40,11 @@ export async function getConcepts(event: APIGatewayProxyEvent, ddbClient: Dynamo
     TableName: process.env.TABLE_NAME,
   }));
   console.log(result.Items);
+  const unmarshalledItems = result.Items?.map(item => unmarshall(item));
+  console.log(unmarshalledItems);
 
   return {
     statusCode: 201, //created
-    body: JSON.stringify(result.Items)
+    body: JSON.stringify(unmarshalledItems)
   }
 }

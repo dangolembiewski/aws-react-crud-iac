@@ -5,6 +5,15 @@ import axios from 'axios';
 const conceptsUrl = outputs.ApiStack.ConceptsApiEndpoint8A639911 + 'concepts'
 
 export class ConceptService {
+  public async getConcepts(): Promise<Concept[]> {
+    try {
+      const response = await axios.get<Concept[]>(conceptsUrl);
+      return response.data; 
+    } catch (error) {
+      console.error('Error creating concept:', error);
+      throw error;
+    }
+  }
 
   public async createConcept(concept: Concept): Promise<string> {
     try {
