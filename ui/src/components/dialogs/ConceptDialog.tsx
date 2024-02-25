@@ -12,7 +12,7 @@ function ConceptDialog({ title, open, onClose, formComponent }: DialogProps) {
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>{title}</DialogTitle>
-      <DialogContent>
+      <DialogContent style={{ padding: '1em' }}>
         {formComponent}
       </DialogContent>
       <DialogActions>

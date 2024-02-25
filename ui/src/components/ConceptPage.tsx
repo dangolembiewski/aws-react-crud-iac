@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Concept } from '../model/Concept';
-import AddConceptForm from './AddConceptForm';
-import UpdateConceptForm from './UpdateConceptForm';
+import AddConceptForm from './forms/AddConceptForm';
+import UpdateConceptForm from './forms/UpdateConceptForm';
 import { ConceptService } from '../service/ConceptService';
 import ConceptDialog from './dialogs/ConceptDialog'; 
 
@@ -49,7 +49,7 @@ function ConceptPage() {
         formComponent={<AddConceptForm onAddConcept={onCreateConcept} />}
       />
 
-      <ConceptDialog
+      <ConceptDialog 
         title="Update Concept"
         open={openUpdateConcept}
         onClose={() => setOpenUpdateConcept(false)}

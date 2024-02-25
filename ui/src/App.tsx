@@ -1,8 +1,8 @@
 import React from 'react';
-import AddConceptForm from './components/AddConceptForm';
+import AddConceptForm from './components/forms/AddConceptForm';
 import { Concept } from './model/Concept';
 import { ConceptService } from './service/ConceptService';
-import UpdateConceptForm from './components/UpdateConceptForm';
+import UpdateConceptForm from './components/forms/UpdateConceptForm';
 import ConceptPage from './components/ConceptPage';
 
 function App() {
