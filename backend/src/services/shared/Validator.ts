@@ -6,9 +6,9 @@ export class MissingFieldError extends Error {
     }
 }
 
-export function validateAsConceptEntry(arg: any){
-    if ((arg as ConceptEntry).displayName == undefined) {
-        throw new MissingFieldError('name')
+export function validateAsConceptEntry(arg: ConceptEntry) {
+    if (arg.displayName === undefined || arg.displayName.trim() === '') {
+        throw new MissingFieldError('displayName');
     }
     // if ((arg as ConceptEntry).description == undefined) {
     //     throw new MissingFieldError('description')

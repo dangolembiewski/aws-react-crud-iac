@@ -7,6 +7,6 @@ process.env.TABLE_NAME = "ConceptsTable-0e78e5957741"
 handler({
   httpMethod: 'POST',
   body: JSON.stringify({
-      location: 'Narnia',
+      description: 'hello',
   })
 } as any, {} as any);

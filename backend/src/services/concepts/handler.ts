@@ -38,12 +38,12 @@ async function handler(event: APIGatewayProxyEvent, context: Context): Promise<A
   } catch (error) {
     console.error(error);
     if (error instanceof MissingFieldError) {
-      return {
+      response = {
           statusCode: 400,
           body: error.message
       }
     }
-    return {
+    response = {
       statusCode: 500,
       body: error.message
     }

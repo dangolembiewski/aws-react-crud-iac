@@ -42,7 +42,11 @@ const AddConceptForm = ({onAddConcept}: AddConceptProps) => {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault(); // prevent page refresh
-    onAddConcept(concept);
+    try {
+        onAddConcept(concept);
+    } catch (error) {
+        console.log("Error handling submit")
+    }
     // Reset form fields 
     setConcept({
         id: '0',

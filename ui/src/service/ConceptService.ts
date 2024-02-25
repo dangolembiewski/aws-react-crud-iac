@@ -1,3 +1,18 @@
-import { DataStack, ApiStack } from '../../../backend/outputs.json';
+import outputs from '../../../backend/outputs.json';
+import { Concept } from '../model/Concept';
+import axios from 'axios';
 
-const conceptsUrl = ApiStack.ConceptsApiEndpoint8A639911 + 'concepts'
+const conceptsUrl = outputs.ApiStack.ConceptsApiEndpoint8A639911 + 'concepts'
+
+export class ConceptService {
+
+  public async createConcept(concept: Concept): Promise<string> {
+    try {
+      const response = await axios.post(conceptsUrl, concept);
+      return response.data.id; 
+    } catch (error) {
+      console.error('Error creating concept:', error);
+      throw error;
+    }
+  }
+}
