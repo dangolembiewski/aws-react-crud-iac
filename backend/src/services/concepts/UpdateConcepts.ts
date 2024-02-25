@@ -1,6 +1,5 @@
 import { DynamoDBClient, GetItemCommand, PutItemCommand, ScanCommand, UpdateItemCommand, UpdateItemCommandInput } from "@aws-sdk/client-dynamodb";
 import { APIGatewayProxyEvent, APIGatewayProxyResult, Context } from "aws-lambda";
-import { v4 } from "uuid";
 
 export async function updateConcepts(event: APIGatewayProxyEvent, ddbClient: DynamoDBClient): Promise<APIGatewayProxyResult> {
 
@@ -8,6 +7,7 @@ export async function updateConcepts(event: APIGatewayProxyEvent, ddbClient: Dyn
     const body = JSON.parse(event.body);
     const id = event.queryStringParameters.id;
 
+    //TODO: this is strict for some reason. Not allowing duplicates or empty strings. Need to change this
     const params: UpdateItemCommandInput = {
         TableName: process.env.TABLE_NAME, 
         Key: {
@@ -25,7 +25,7 @@ export async function updateConcepts(event: APIGatewayProxyEvent, ddbClient: Dyn
 
     const data = await ddbClient.send(new UpdateItemCommand(params));
 
-    console.log(data.Attributes);
+    console.log(data);
 
     return {
       statusCode: 201,

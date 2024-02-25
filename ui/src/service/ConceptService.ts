@@ -15,4 +15,14 @@ export class ConceptService {
       throw error;
     }
   }
+
+  public async updateConcept(concept: Concept): Promise<string> {
+    try {
+      const response = await axios.put(`${conceptsUrl}?id=${concept.id}`, concept);
+      return response.data.id; 
+    } catch (error) {
+      console.error('Error creating concept:', error);
+      throw error;
+    }
+  }
 }
