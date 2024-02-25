@@ -35,4 +35,14 @@ export class ConceptService {
       throw error;
     }
   }
+  public async deleteConcept(conceptId: string): Promise<string> {
+    try {
+      console.log(conceptId);
+      const response = await axios.delete(`${conceptsUrl}?id=${conceptId}`);
+      return response.data.id; 
+    } catch (error) {
+      console.error('Error creating concept:', error);
+      throw error;
+    }
+  }
 }

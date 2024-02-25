@@ -5,6 +5,7 @@ import UpdateConceptForm from './forms/UpdateConceptForm';
 import { ConceptService } from '../service/ConceptService';
 import ConceptDialog from './dialogs/ConceptDialog'; 
 import ConceptTable from './ConceptTable';
+import { Button } from '@mui/material';
 
 
 const conceptService = new ConceptService();
@@ -33,8 +34,8 @@ function ConceptPage() {
   async function onCreateConcept(concept: Concept) {
     try {
       await conceptService.createConcept(concept);
-      alert('Concept added successfully');
-      // fetch and load the paginated data?
+      setOpenAddConcept(false);
+      setConcepts(prevConcepts => [...prevConcepts, concept]); // Add the new concept to the state
     } catch (error: any) {
       console.log('Error creating concept:', error.message);
       alert(error.response.data);
@@ -44,12 +45,10 @@ function ConceptPage() {
   async function onUpdateConcept(concept: Concept) {
     try {
       await conceptService.updateConcept(concept);
-      alert('Concept updated successfully');
       setOpenUpdateConcept(false);
-      // fetch and load the paginated data?
+      await fetchConcepts();
     } catch (error: any) {
       console.log('Error updating concept:', error.message);
-      // TODO: Better error messages for user
       alert(error.response.data);
     }
   }  
@@ -59,25 +58,28 @@ function ConceptPage() {
   }
 
   async function onDeleteConcept(conceptId: string) {
-    //coming soon
+    try {
+      await conceptService.deleteConcept(conceptId);
+      alert('Concept deleted');
+      setConcepts(prevConcepts => prevConcepts.filter(concept => concept.id !== conceptId)); 
+    } catch (error: any) {
+      console.log('Error creating concept:', error.message);
+      alert(error.response.data);
+    }
   }
 
   return (
     <div className='concepts-home' style={{ display: 'flex', flexDirection: 'column', alignItems:'center' }}>
       
+      <div >
+        <Button variant="contained" onClick={() => setOpenAddConcept(true)}>Add Concept</Button>
+      </div>
+
       <ConceptTable
         onEditConcept={handleEditClicked}
         onDeleteConcept={onDeleteConcept}
         concepts={concepts}
       ></ConceptTable>
-      
-      {/* <div className='add-concept-form'>
-        <button onClick={() => setOpenAddConcept(true)}>Add Concept</button>
-      </div>
-      <div className='update-concept-form'>
-        <button onClick={() => setOpenUpdateConcept(true)}>Update Concept</button>
-      </div> */}
-      
 
       <ConceptDialog
         title="Add Concept"

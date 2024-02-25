@@ -6,7 +6,7 @@ function App() {
   
   return (
     <div className="App" style={{ display: 'flex', flexDirection: 'column', alignItems:'center' }}>
-      <h2>HomePage</h2>
+      <h1>Clinical Concepts</h1>
       <div>
         <ConceptPage></ConceptPage>
       </div>

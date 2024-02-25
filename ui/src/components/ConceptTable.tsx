@@ -23,8 +23,8 @@ function ConceptTable({ concepts, onEditConcept, onDeleteConcept }: ConceptTable
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>ID</TableCell>
-            <TableCell>Display Name</TableCell>
+            <TableCell>conceptId</TableCell>
+            <TableCell>Name</TableCell>
             <TableCell>Description</TableCell>
             <TableCell>Parent IDs</TableCell>
             <TableCell>Child IDs</TableCell>
@@ -42,8 +42,10 @@ function ConceptTable({ concepts, onEditConcept, onDeleteConcept }: ConceptTable
               <TableCell>{Array.isArray(concept.childIds) ? concept.childIds.join(', '): ''}</TableCell>
               <TableCell>{Array.isArray(concept.childIds) ? concept.alternateNames.join(', '): ''}</TableCell>
               <TableCell>
+              <div style={{ display: 'flex', gap: '0.5em' }}>
                 <Button variant="contained" color="primary" onClick={() => handleEdit(concept)}>Edit</Button>
-                <Button variant="contained" color="secondary" onClick={() => handleDelete(concept.id)}>Delete</Button>
+                <Button variant="contained" color="error" onClick={() => handleDelete(concept.id)}>Delete</Button>
+              </div>
               </TableCell>
             </TableRow>
           ))}
