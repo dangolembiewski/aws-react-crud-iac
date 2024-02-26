@@ -5,4 +5,5 @@ TODO:
 - pagination and lazy loading
 - write tests
 - be consistent on stlying. no longer supporting MakeStyle
-- 
+- handle duplicate concept names
+- edge cases

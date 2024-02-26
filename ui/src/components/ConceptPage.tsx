@@ -59,6 +59,7 @@ function ConceptPage() {
   async function onUpdateConcept(concept: Concept) {
     try {
       await conceptService.updateConcept(concept);
+      setSelectedConcept(concept);
       setOpenUpdateConcept(false);
       await fetchConcepts();
     } catch (error: any) {
