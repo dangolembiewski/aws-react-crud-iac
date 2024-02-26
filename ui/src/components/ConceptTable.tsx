@@ -26,7 +26,7 @@ function ConceptTable({ concepts, onEditConcept, onDeleteConcept, onViewConcept 
   };
 
   return (
-    <TableContainer component={Paper} style={{ border: '0.1rem solid #ccc', boxShadow: '0 0.6rem 0.6rem rgba(0, 0, 0, 0.1)' }}>      <Table>
+    <TableContainer component={Paper} style={{ border: '0.1rem solid #ccc', boxShadow: '0 0.6rem 0.6rem rgba(0, 0, 0, 0.1)' }}><Table>
         <TableHead style={{ backgroundColor: '#f0f0f0', fontWeight: 'bold' }}>
           <TableRow>
             <TableCell style={{fontWeight: 'bold' }}>Name</TableCell>

@@ -95,27 +95,31 @@ function ConceptPage() {
 
   return (
     <div className='concepts-home' style={{ display: 'flex', flexDirection: 'column', alignItems:'center', gap: '1em' }}>
-      
-      <div >
-        <Button variant="contained" onClick={() => setOpenAddConcept(true)}>Add Concept</Button>
+      <div style={{position: 'relative'}}>
+        <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '1em', alignItems: 'center', flexGrow: '1'}}>
+          <div >
+            <Button variant="contained" onClick={() => setOpenAddConcept(true)}>Add Concept</Button>
+          </div>
+          <div>
+            {/* Search bar */}
+            <TextField
+              label="Search"
+              variant="outlined"
+              value={searchTerm}
+              onChange={handleSearchChange}
+              style={{ backgroundColor: 'white'}}
+              size='small'
+            />
+          </div>
+        </div>
+
+        <ConceptTable
+          onEditConcept={handleEditClicked}
+          onDeleteConcept={onDeleteConcept}
+          onViewConcept={onViewConcept}
+          concepts={filteredConcepts}
+        ></ConceptTable>
       </div>
-
-      {/* Search bar */}
-      <TextField
-        label="Search"
-        variant="outlined"
-        value={searchTerm}
-        onChange={handleSearchChange}
-        style={{ marginBottom: 10, backgroundColor: 'white' }}
-      />
-
-      <ConceptTable
-        onEditConcept={handleEditClicked}
-        onDeleteConcept={onDeleteConcept}
-        onViewConcept={onViewConcept}
-        concepts={filteredConcepts}
-      ></ConceptTable>
-
       <ConceptDialog
         title="Add Concept"
         open={openAddConcept}
