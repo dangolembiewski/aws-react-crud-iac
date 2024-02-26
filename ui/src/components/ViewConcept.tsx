@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Concept } from '../model/Concept';
-import { Dialog, DialogTitle, DialogContent, Typography, List, ListItem, ListItemText, ListItemIcon, Button, TextareaAutosize, Link } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, List, ListItem, ListItemText, Button, Link } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './styles/ViewConceptStyles.css'
