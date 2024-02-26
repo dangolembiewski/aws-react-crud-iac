@@ -34,7 +34,8 @@ function ConceptPage() {
   async function onCreateConcept(concept: Concept) {
     try {
       const response = await conceptService.createConcept(concept);
-      //const newId = response
+      concept.id = response;
+      console.log(concept.id);
       setOpenAddConcept(false);
       setConcepts(prevConcepts => [...prevConcepts, concept]); // Add the new concept to the state
     } catch (error: any) {
@@ -61,7 +62,6 @@ function ConceptPage() {
   async function onDeleteConcept(conceptId: string) {
     try {
       await conceptService.deleteConcept(conceptId);
-      alert('Concept deleted');
       setConcepts(prevConcepts => prevConcepts.filter(concept => concept.id !== conceptId)); 
     } catch (error: any) {
       console.log('Error creating concept:', error.message);
