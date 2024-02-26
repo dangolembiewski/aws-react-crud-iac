@@ -6,6 +6,7 @@ import { ConceptService } from '../service/ConceptService';
 import ConceptDialog from './dialogs/ConceptDialog'; 
 import ConceptTable from './ConceptTable';
 import { Button, TextField } from '@mui/material';
+import ViewConcept from './ViewConcept';
 
 
 const conceptService = new ConceptService();
@@ -16,6 +17,7 @@ function ConceptPage() {
   const [selectedConcept, setSelectedConcept] = useState<Concept | null>(null);
   const [openAddConcept, setOpenAddConcept] = useState(false);
   const [openUpdateConcept, setOpenUpdateConcept] = useState(false);
+  const [openViewConcept, setOpenViewConcept] = useState(false);
 
   function handleSearchChange(event: { target: { value: React.SetStateAction<string>; }; }) {
     setSearchTerm(event.target.value);
@@ -72,6 +74,7 @@ function ConceptPage() {
   async function onDeleteConcept(conceptId: string) {
     try {
       await conceptService.deleteConcept(conceptId);
+      setOpenViewConcept(false);
       setConcepts(prevConcepts => prevConcepts.filter(concept => concept.id !== conceptId)); 
     } catch (error: any) {
       console.log('Error creating concept:', error.message);
@@ -80,7 +83,8 @@ function ConceptPage() {
   }
 
   async function onViewConcept(concept: Concept) {
-    // view more details
+    setSelectedConcept(concept);
+    setOpenViewConcept(true);
   }
 
   return (
@@ -96,7 +100,7 @@ function ConceptPage() {
         variant="outlined"
         value={searchTerm}
         onChange={handleSearchChange}
-        style={{ marginBottom: 10 }}
+        style={{ marginBottom: 10, backgroundColor: 'white' }}
       />
 
       <ConceptTable
@@ -118,6 +122,14 @@ function ConceptPage() {
         open={openUpdateConcept}
         onClose={() => setOpenUpdateConcept(false)}
         formComponent={selectedConcept && <UpdateConceptForm onUpdateConcept={onUpdateConcept} concept={selectedConcept}/>}
+      />
+
+      <ViewConcept
+        open={openViewConcept}
+        onClose={() => setOpenViewConcept(false)}
+        concept={selectedConcept}
+        onEditConcept={handleEditClicked} 
+        onDeleteConcept={onDeleteConcept} 
       />
 
     </div>

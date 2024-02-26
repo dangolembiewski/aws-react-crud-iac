@@ -29,24 +29,20 @@ function ConceptTable({ concepts, onEditConcept, onDeleteConcept, onViewConcept 
     <TableContainer component={Paper} style={{ border: '0.1rem solid #ccc', boxShadow: '0 0.6rem 0.6rem rgba(0, 0, 0, 0.1)' }}>      <Table>
         <TableHead style={{ backgroundColor: '#f0f0f0', fontWeight: 'bold' }}>
           <TableRow>
-            <TableCell style={{fontWeight: 'bold' }}>Concept Id</TableCell>
             <TableCell style={{fontWeight: 'bold' }}>Name</TableCell>
             <TableCell style={{fontWeight: 'bold' }}>Description</TableCell>
-            <TableCell style={{fontWeight: 'bold' }}>Parent IDs</TableCell>
-            <TableCell style={{fontWeight: 'bold' }}>Child IDs</TableCell>
-            <TableCell style={{fontWeight: 'bold' }}>Alternate Names</TableCell>
+            <TableCell style={{fontWeight: 'bold' }}># Parents</TableCell>
+            <TableCell style={{fontWeight: 'bold' }}># Children</TableCell>
             <TableCell style={{fontWeight: 'bold' }}>Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {concepts.map((concept) => (
             <TableRow key={concept.id}>
-            <TableCell>{concept.id}</TableCell>
             <TableCell>{concept.displayName}</TableCell>
             <TableCell>{concept.description}</TableCell>
-            <TableCell>{Array.isArray(concept.parentIds) ? concept.parentIds.join(', ') : ''}</TableCell>
-            <TableCell>{Array.isArray(concept.childIds) ? concept.childIds.join(', ') : ''}</TableCell>
-            <TableCell>{Array.isArray(concept.childIds) ? concept.alternateNames.join(', ') : ''}</TableCell>
+            <TableCell>{Array.isArray(concept.parentIds) ? concept.parentIds.length : ''}</TableCell>
+            <TableCell>{Array.isArray(concept.childIds) ? concept.childIds.length : ''}</TableCell>
             <TableCell>
               <div style={{ display: 'flex', gap: '0.5em' }}>
                 <IconButton color="primary" onClick={() => handleView(concept)}>
