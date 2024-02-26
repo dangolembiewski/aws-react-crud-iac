@@ -26,17 +26,16 @@ function ConceptTable({ concepts, onEditConcept, onDeleteConcept, onViewConcept 
   };
 
   return (
-    <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
+    <TableContainer component={Paper} style={{ border: '0.1rem solid #ccc', boxShadow: '0 0.6rem 0.6rem rgba(0, 0, 0, 0.1)' }}>      <Table>
+        <TableHead style={{ backgroundColor: '#f0f0f0', fontWeight: 'bold' }}>
           <TableRow>
-            <TableCell>conceptId</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Description</TableCell>
-            <TableCell>Parent IDs</TableCell>
-            <TableCell>Child IDs</TableCell>
-            <TableCell>Alternate Names</TableCell>
-            <TableCell>Actions</TableCell>
+            <TableCell style={{fontWeight: 'bold' }}>Concept Id</TableCell>
+            <TableCell style={{fontWeight: 'bold' }}>Name</TableCell>
+            <TableCell style={{fontWeight: 'bold' }}>Description</TableCell>
+            <TableCell style={{fontWeight: 'bold' }}>Parent IDs</TableCell>
+            <TableCell style={{fontWeight: 'bold' }}>Child IDs</TableCell>
+            <TableCell style={{fontWeight: 'bold' }}>Alternate Names</TableCell>
+            <TableCell style={{fontWeight: 'bold' }}>Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
