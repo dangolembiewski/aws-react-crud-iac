@@ -14,7 +14,7 @@ const conceptService = new ConceptService();
 function ConceptPage() {
   const [concepts, setConcepts] = useState<Concept[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedConcept, setSelectedConcept] = useState<Concept | null>(null);
+  const [selectedConcept, setSelectedConcept] = useState<Concept>();
   const [openAddConcept, setOpenAddConcept] = useState(false);
   const [openUpdateConcept, setOpenUpdateConcept] = useState(false);
   const [openViewConcept, setOpenViewConcept] = useState(false);
@@ -49,7 +49,7 @@ function ConceptPage() {
       concept.id = response;
       console.log(concept.id);
       setOpenAddConcept(false);
-      setConcepts(prevConcepts => [...prevConcepts, concept]); // Add the new concept to the state
+      setConcepts(prevConcepts => [...prevConcepts, concept]); 
     } catch (error: any) {
       console.log('Error creating concept:', error.message);
       alert(error.response.data);
@@ -59,7 +59,8 @@ function ConceptPage() {
   async function onUpdateConcept(concept: Concept) {
     try {
       await conceptService.updateConcept(concept);
-      setSelectedConcept(concept);
+      const newConcept = concept;
+      setSelectedConcept(newConcept);
       setOpenUpdateConcept(false);
       await fetchConcepts();
     } catch (error: any) {
@@ -83,9 +84,13 @@ function ConceptPage() {
     }
   }
 
+  // Handle the view concept info dialog
   async function onViewConcept(concept: Concept) {
     setSelectedConcept(concept);
     setOpenViewConcept(true);
+  }
+  async function onUpdateSelectedConcept(concept: Concept) {
+    setSelectedConcept(concept);
   }
 
   return (
@@ -124,15 +129,17 @@ function ConceptPage() {
         onClose={() => setOpenUpdateConcept(false)}
         formComponent={selectedConcept && <UpdateConceptForm onUpdateConcept={onUpdateConcept} concept={selectedConcept}/>}
       />
-
-      <ViewConcept
-        open={openViewConcept}
-        onClose={() => setOpenViewConcept(false)}
-        concept={selectedConcept}
-        onEditConcept={handleEditClicked} 
-        onDeleteConcept={onDeleteConcept} 
-      />
-
+      {selectedConcept && (
+        <ViewConcept
+          open={openViewConcept}
+          onClose={() => setOpenViewConcept(false)}
+          concept={selectedConcept}
+          allConcepts={concepts}
+          onEditConcept={handleEditClicked} 
+          onUpdateSelectedConcept={onUpdateSelectedConcept}
+          onDeleteConcept={onDeleteConcept} 
+        />
+      )}
     </div>
   );
 }

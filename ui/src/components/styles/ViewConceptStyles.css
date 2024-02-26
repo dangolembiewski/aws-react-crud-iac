@@ -1,0 +1,10 @@
+#buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.6rem;
+}
+
+#dialog-content {
+  min-width: 20vw; 
+  max-width: 20vw;
+}

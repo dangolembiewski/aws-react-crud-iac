@@ -7,3 +7,7 @@ TODO:
 - be consistent on stlying. no longer supporting MakeStyle
 - handle duplicate concept names
 - edge cases
+- maybe a tree structure to represent parent child relationship
+- state management with redux
+- use a map of concepts with id as key for state
+- be consistent with function syntax
