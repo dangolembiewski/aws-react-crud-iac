@@ -1,5 +1,12 @@
 Added config-overrides.js and changed start script to be able to use ouputs file from backend
 
+AWS Services:
+- Api Gateway
+- lambda
+- cognito
+- dynamoDb
+- s3 for hosting
+
 TODO:
 - optimized error handling and messages to user
 - pagination and lazy loading
@@ -11,3 +18,8 @@ TODO:
 - state management with redux
 - use a map of concepts with id as key for state
 - be consistent with function syntax
+
+Phase 2:
+- Set up CI/CD
+- Write Tests
+- Implement a load csv service to upload into dynamoDB 
