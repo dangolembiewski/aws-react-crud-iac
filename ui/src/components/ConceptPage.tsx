@@ -5,16 +5,26 @@ import UpdateConceptForm from './forms/UpdateConceptForm';
 import { ConceptService } from '../service/ConceptService';
 import ConceptDialog from './dialogs/ConceptDialog'; 
 import ConceptTable from './ConceptTable';
-import { Button } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 
 
 const conceptService = new ConceptService();
 
 function ConceptPage() {
   const [concepts, setConcepts] = useState<Concept[]>([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const [selectedConcept, setSelectedConcept] = useState<Concept | null>(null);
   const [openAddConcept, setOpenAddConcept] = useState(false);
   const [openUpdateConcept, setOpenUpdateConcept] = useState(false);
+
+  function handleSearchChange(event: { target: { value: React.SetStateAction<string>; }; }) {
+    setSearchTerm(event.target.value);
+  }
+  // Filter concepts based on search term in name or description
+  const filteredConcepts = concepts.filter(concept =>
+    concept.displayName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    concept.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   async function fetchConcepts(){
     try {
@@ -69,17 +79,31 @@ function ConceptPage() {
     }
   }
 
+  async function onViewConcept(concept: Concept) {
+    // view more details
+  }
+
   return (
-    <div className='concepts-home' style={{ display: 'flex', flexDirection: 'column', alignItems:'center' }}>
+    <div className='concepts-home' style={{ display: 'flex', flexDirection: 'column', alignItems:'center', gap: '1em' }}>
       
       <div >
         <Button variant="contained" onClick={() => setOpenAddConcept(true)}>Add Concept</Button>
       </div>
 
+      {/* Search bar */}
+      <TextField
+        label="Search"
+        variant="outlined"
+        value={searchTerm}
+        onChange={handleSearchChange}
+        style={{ marginBottom: 10 }}
+      />
+
       <ConceptTable
         onEditConcept={handleEditClicked}
         onDeleteConcept={onDeleteConcept}
-        concepts={concepts}
+        onViewConcept={onViewConcept}
+        concepts={filteredConcepts}
       ></ConceptTable>
 
       <ConceptDialog
@@ -95,6 +119,7 @@ function ConceptPage() {
         onClose={() => setOpenUpdateConcept(false)}
         formComponent={selectedConcept && <UpdateConceptForm onUpdateConcept={onUpdateConcept} concept={selectedConcept}/>}
       />
+
     </div>
   );
 }

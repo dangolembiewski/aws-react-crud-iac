@@ -34,6 +34,17 @@ function ConceptForm({ concept, onSubmit }: ConceptFormProps){
         <Grid item xs={12}>
           <TextField
             fullWidth
+            label="Concept ID"
+            type="text"
+            name="id"
+            value={formConcept.id}
+            onChange={handleChange}
+            variant="outlined"
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            fullWidth
             label="Display Name"
             type="text"
             name="displayName"
