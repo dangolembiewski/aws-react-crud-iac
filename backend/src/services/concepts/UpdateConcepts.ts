@@ -21,11 +21,11 @@ export async function updateConcepts(event: APIGatewayProxyEvent, ddbClient: Dyn
         },
         UpdateExpression: "SET description = :description, displayName = :displayName, parentIds = :parentIds, childIds = :childIds, alternateNames = :alternateNames",
         ExpressionAttributeValues: {
-          ":description": body.description ? { S: body.description } : { NULL: true },
+          ":description": body.description !== undefined && body.description !== '' ? { S: body.description } : { NULL: true },
           ":displayName": { S: body.displayName },
-          ":parentIds": body.parentIds ? { SS: body.parentIds }: { NULL: true },
-          ":childIds": body.childIds ? { SS: body.childIds }: { NULL: true },
-          ":alternateNames": body.alternateNames ? { SS: body.alternateNames }: { NULL: true }
+          ":parentIds": body.parentIds && body.parentIds.length > 0 ? { SS: body.parentIds } : { NULL: true },
+          ":childIds": body.childIds && body.childIds.length > 0 ? { SS: body.childIds } : { NULL: true },
+          ":alternateNames": body.alternateNames && body.alternateNames.length > 0 ? { SS: body.alternateNames } : { NULL: true }
         }
     };
 

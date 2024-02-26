@@ -13,14 +13,14 @@ content-type: application/json
 }
 ###
 
-PUT https://gh649qzq1j.execute-api.us-east-1.amazonaws.com/prod/concepts?id=4cb5a4e3-2e6d-4aa7-8bf4-ad7b682e44ec
+PUT https://gh649qzq1j.execute-api.us-east-1.amazonaws.com/prod/concepts?id=5ea40081-1c10-4d15-9280-7dea9c07dada
 content-type: application/json
 
 {
   "description": "f",
   "displayName": "f",
   "parentIds": ["8"],
-  "childIds": [],
+  "childIds": null,
   "alternateNames": null
 }
 ###

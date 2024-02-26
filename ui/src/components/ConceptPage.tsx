@@ -33,7 +33,8 @@ function ConceptPage() {
 
   async function onCreateConcept(concept: Concept) {
     try {
-      await conceptService.createConcept(concept);
+      const response = await conceptService.createConcept(concept);
+      //const newId = response
       setOpenAddConcept(false);
       setConcepts(prevConcepts => [...prevConcepts, concept]); // Add the new concept to the state
     } catch (error: any) {

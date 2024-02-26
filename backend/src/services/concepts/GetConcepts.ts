@@ -43,14 +43,29 @@ export async function getConcepts(event: APIGatewayProxyEvent, ddbClient: Dynamo
     TableName: process.env.TABLE_NAME,
   }));
   console.log(result.Items);
-  const unmarshalledItems = result.Items?.map(item => {
+  const unmarshalledItems = result.Items ? result.Items.map(item => {
     const unmarshalledItem = unmarshall(item);
     // Convert Sets to Arrays
-    unmarshalledItem.parentIds = Array.from(unmarshalledItem.parentIds);
-    unmarshalledItem.childIds = Array.from(unmarshalledItem.childIds);
-    unmarshalledItem.alternateNames = Array.from(unmarshalledItem.alternateNames);
+    if(unmarshalledItem.parentIds){
+      unmarshalledItem.parentIds = Array.from(unmarshalledItem.parentIds);
+    }
+    else{
+      unmarshalledItem.parentIds = []
+    }    
+    if(unmarshalledItem.childIds){
+      unmarshalledItem.childIds = Array.from(unmarshalledItem.childIds);
+    }
+    else{
+      unmarshalledItem.childIds = []
+    }
+    if(unmarshalledItem.alternateNames){
+      unmarshalledItem.alternateNames = Array.from(unmarshalledItem.alternateNames);
+    }
+    else{
+      unmarshalledItem.alternateNames = []
+    }
     return unmarshalledItem;
-  });
+  }) : [];
   console.log(unmarshalledItems);
 
   return {
