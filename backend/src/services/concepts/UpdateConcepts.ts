@@ -1,7 +1,15 @@
 import { DynamoDBClient, UpdateItemCommand, UpdateItemCommandInput } from "@aws-sdk/client-dynamodb";
 import { APIGatewayProxyEvent, APIGatewayProxyResult, Context } from "aws-lambda";
+import { hasAdminGroup } from "../shared/Utils";
 
 export async function updateConcepts(event: APIGatewayProxyEvent, ddbClient: DynamoDBClient): Promise<APIGatewayProxyResult> {
+
+  if (!hasAdminGroup(event)) {
+    return {
+        statusCode: 401,
+        body: JSON.stringify(`Not authorized!`)
+    }
+  }
 
   if(event.queryStringParameters && ('id' in event.queryStringParameters) && event.body){
     const body = JSON.parse(event.body);

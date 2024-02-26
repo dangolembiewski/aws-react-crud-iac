@@ -11,9 +11,10 @@ const lambdaStack = new LambdaStack(app, 'LambdaStack', {
   conceptsTable: dataStack.conceptsTable,
 });
 
-new AuthStack(app, 'AuthStack');
+const authStack = new AuthStack(app, 'AuthStack');
 
 new ApiStack(app, "ApiStack", {
   conceptsLambdaIntegration: lambdaStack.conceptsLambdaIntegration,
+  userPool: authStack.userPool
 });
 new UiDeploymentStack(app, 'UiDeploymentStack');

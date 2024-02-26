@@ -1,11 +1,11 @@
 import { CfnOutput, Stack, StackProps } from 'aws-cdk-lib'
-import { UserPool, UserPoolClient } from 'aws-cdk-lib/aws-cognito';
+import { CfnUserPoolGroup, UserPool, UserPoolClient } from 'aws-cdk-lib/aws-cognito';
 import { Construct } from 'constructs';
 
 export class AuthStack extends Stack {
 
     // user directory that manages user registration, authentication, and account recovery
-    private userPool: UserPool;
+    public userPool: UserPool;
 
     // represents an application that interacts with the User Pool
     private userPoolClient: UserPoolClient;
@@ -15,6 +15,7 @@ export class AuthStack extends Stack {
 
         this.createUserPool();
         this.createUserPoolClient();
+        this.createAdminsGroup();
     }
 
     private createUserPool(){
@@ -40,6 +41,13 @@ export class AuthStack extends Stack {
         });
         new CfnOutput(this, 'ConceptsUserPoolClientId', {
             value: this.userPoolClient.userPoolClientId
+        })
+    }
+
+    private createAdminsGroup(){
+        new CfnUserPoolGroup(this, 'OntologyAdmins', {
+            userPoolId: this.userPool.userPoolId,
+            groupName: 'admins'
         })
     }
 }

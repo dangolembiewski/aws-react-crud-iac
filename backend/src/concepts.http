@@ -1,4 +1,16 @@
-GET https://gh649qzq1j.execute-api.us-east-1.amazonaws.com/prod/concepts
+@url = https://gh649qzq1j.execute-api.us-east-1.amazonaws.com/prod/
+
+@token = eyJraWQiOiJ2dzZVcFMwN3hXd29EUGtoRDhlOVNJTnRqZEh0eHFHNVFGcm1rQ2RIWkd3PSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJjNDA4NTQwOC1hMDExLTcwOWEtM2QxMy1jNjk0MDY1M2NhMjAiLCJjb2duaXRvOmdyb3VwcyI6WyJhZG1pbnMiXSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tXC91cy1lYXN0LTFfSXd6bGVJangwIiwiY29nbml0bzp1c2VybmFtZSI6IkRhbiIsIm9yaWdpbl9qdGkiOiIyMzI1OTcxMy0yOTJjLTRiNzctOGM0Ni0xYTIzNTAzNmQ3YzkiLCJhdWQiOiIyZ21nMnZqZW9mMTZiYnNqb3NwOWtucDJsbiIsImV2ZW50X2lkIjoiYWYzNjU5NWEtOThkNC00NWJjLTk1NzAtY2M5Mzg5OWU3NGQyIiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE3MDg5ODQxOTEsImV4cCI6MTcwODk4Nzc5MSwiaWF0IjoxNzA4OTg0MTkxLCJqdGkiOiIxN2FkZjg5NS01NDczLTRmMTItOTA1Ni1lODBmZDNmNzUwNDciLCJlbWFpbCI6ImRhbmdvbGVtQGdtYWlsLmNvbSJ9.AcukbRxFNbVVlI4aYXM_8TPvkBpC4Una1HkxlL00AYFKHMiGYzD7eeCBnS6XkGOC70BjVnYg6jQ27sZLgbKg0N-t42xe63LPUYIHr4vNp8qLaWiQnrCsusX6KZSWOe_7NM3b78Ha7-vSEZy1B4nxJgrXUXGTjCR8PhLI_VjFnHiGRzlHy8kgE2YEvm09rnGhkQgli5qMQXHiE8J6k_KG1-CsYE7ClNJWjBVW500B5bLQaMzQqIzi8f-D9nFWxZL0nSCj63bL4dUlSQWhPXCSH7zBWt-WbxQfPHAu0wC0NNsbnPSrHHwIvgzgtKcccow1P4drFmkGHMTH5kBKh-izMw
+
+
+
+
+GET {{url}}/concepts
+Authorization: {{token}}
+###
+
+DELETE {{url}}/concepts
+Authorization: {{token}}
 ###
 
 POST https://gh649qzq1j.execute-api.us-east-1.amazonaws.com/prod/concepts
@@ -26,9 +38,5 @@ content-type: application/json
 ###
 
 GET https://gh649qzq1j.execute-api.us-east-1.amazonaws.com/prod/concepts?id=4cbc953b-c3d4-4797-b01c-15309b406053
-content-type: application/json
-###
-
-DELETE https://gh649qzq1j.execute-api.us-east-1.amazonaws.com/prod/concepts?id=4cbc953b-c3d4-4797-b01c-15309b406053
 content-type: application/json
 ###
