@@ -58,7 +58,7 @@ function App() {
           )}
         </Toolbar>
       </AppBar>
-      <div style={{ padding: 16 }}>
+      <div style={{ display:'flex', justifyContent: 'center', padding: 16 }}>
         {username ? (
           <ConceptPage conceptService={conceptService} />
         ) : (

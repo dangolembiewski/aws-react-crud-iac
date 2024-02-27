@@ -52,7 +52,6 @@ export class ConceptService {
   public async updateConcept(concept: Concept): Promise<string> {
     try {
       const config = await this.getRequestConfig();
-      console.log(concept);
       const response = await axios.put(`${conceptsUrl}?id=${concept.id}`, concept, config);
       return response.data.id; 
     } catch (error) {
@@ -64,7 +63,6 @@ export class ConceptService {
   public async deleteConcept(conceptId: string): Promise<string> {
     try {
       const config = await this.getRequestConfig();
-      console.log(conceptId);
       const response = await axios.delete(`${conceptsUrl}?id=${conceptId}`, config);
       return response.data.id; 
     } catch (error) {
