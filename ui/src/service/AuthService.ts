@@ -1,4 +1,4 @@
-import { SignInOutput, fetchAuthSession, signIn, signOut } from '@aws-amplify/auth';
+import { SignInOutput, fetchAuthSession, getCurrentUser, signIn, signOut } from '@aws-amplify/auth';
 import { Amplify } from 'aws-amplify';
 
 
@@ -16,13 +16,33 @@ export class AuthService {
   public isSignedIn: boolean = false;
   private JwtToken: string | undefined;
 
+  public async currentAuthenticatedUser(): Promise<string | undefined> {
+    try {
+      const { username, userId, signInDetails } = await getCurrentUser();
+      console.log(`The username: ${username}`);
+      console.log(`The userId: ${userId}`);
+      console.log(`The signInDetails: ${signInDetails}`);
+      return username;
+    } catch (err) {
+      console.log(err);
+      return undefined;
+    }
+  }
+
+  public async currentSession() {
+    try {
+      const { accessToken, idToken } = (await fetchAuthSession()).tokens ?? {};
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   public async login(username: string, password: string) {
     try {
       const { isSignedIn, nextStep } = await signIn({ username, password });
       this.isSignedIn = isSignedIn;
       const { idToken } = (await fetchAuthSession()).tokens ?? {};
       this.JwtToken = idToken?.toString();
-      console.log(this.JwtToken);
     } catch (error) {
       throw error;
     }

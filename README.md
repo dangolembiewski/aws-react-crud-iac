@@ -19,6 +19,7 @@ TODO:
 - state management with redux
 - use a map of concepts with id as key for state
 - be consistent with function syntax
+- detect session expired in the errors? refresh token
 
 Phase 2:
 - Set up CI/CD
