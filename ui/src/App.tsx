@@ -3,7 +3,8 @@ import ConceptPage from './components/ConceptPage';
 import Login from './components/Login';
 import { AuthService } from './service/AuthService';
 import { ConceptService } from './service/ConceptService';
-import { Button } from '@mui/material';
+import { AppBar, Button, Toolbar, Typography } from '@mui/material';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const authService = new AuthService();
 const conceptService = new ConceptService(authService);
@@ -40,16 +41,30 @@ function App() {
   }
 
   return (
-    <div className="App" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: '#f8f8f8', minHeight: '100vh' }}>
-      <h1>Clinical Concepts</h1>
-      {username ? (
-        <div>
-          <Button variant="contained" onClick={handleLogout}>Logout</Button>
+    <div className="App">
+      <AppBar position="static">
+        <Toolbar style={{ padding: '0.5rem 2rem', justifyContent: 'space-between' }}> {/* Added justifyContent to align items properly */}
+          <Typography variant="h6">
+            Clinical Concepts
+          </Typography>
+          {username && (
+            <div style={{ display: 'flex', alignItems: 'center' }}> {/* Added a container to align username and logout button */}
+              <AccountCircleIcon style={{ marginRight: 8 }} /> {/* User icon */}
+              <Typography variant="body1" style={{ marginRight: 16 }}>
+                {username}
+              </Typography>
+              <Button color="inherit" onClick={handleLogout} style={{ backgroundColor: '#f0f0f0', color: 'black' }}>Logout</Button>
+            </div>
+          )}
+        </Toolbar>
+      </AppBar>
+      <div style={{ padding: 16 }}>
+        {username ? (
           <ConceptPage conceptService={conceptService} />
-        </div>
-      ) : (
-        <Login onLogin={handleLogin} />
-      )}
+        ) : (
+          <Login onLogin={handleLogin} />
+        )}
+      </div>
     </div>
   );
 }
