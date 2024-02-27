@@ -13,6 +13,7 @@ Test Accounts:
 - Cognito
 - dynamoDb
 - s3 and Cloudfront for hosting
+- Amplify and AWS SDK for web app
 
 # Tech Stack:
 ## Frontend:
