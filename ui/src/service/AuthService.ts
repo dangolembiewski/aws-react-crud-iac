@@ -1,4 +1,4 @@
-import { SignInOutput, fetchAuthSession, getCurrentUser, signIn, signOut } from '@aws-amplify/auth';
+import { fetchAuthSession, getCurrentUser, signIn, signOut } from '@aws-amplify/auth';
 import { Amplify } from 'aws-amplify';
 
 
@@ -18,10 +18,8 @@ export class AuthService {
 
   public async currentAuthenticatedUser(): Promise<string | undefined> {
     try {
-      const { username, userId, signInDetails } = await getCurrentUser();
+      const { username } = await getCurrentUser();
       console.log(`The username: ${username}`);
-      console.log(`The userId: ${userId}`);
-      console.log(`The signInDetails: ${signInDetails}`);
       return username;
     } catch (err) {
       console.log(err);
@@ -29,7 +27,10 @@ export class AuthService {
     }
   }
 
-  public getJwtToken(): string | undefined {
+  public async getJwtToken(): Promise<string | undefined> {
+    if(!this.JwtToken){
+      await this.currentSession();
+    }
     return this.JwtToken;
   }
 
@@ -43,7 +44,8 @@ export class AuthService {
 
   public async currentSession() {
     try {
-      const { accessToken, idToken } = (await fetchAuthSession({forceRefresh: true})).tokens ?? {};
+      const { idToken } = (await fetchAuthSession({forceRefresh: true})).tokens ?? {};
+      this.JwtToken = idToken?.toString();
     } catch (err) {
       console.log(err);
     }
@@ -51,7 +53,7 @@ export class AuthService {
 
   public async login(username: string, password: string) {
     try {
-      const { isSignedIn, nextStep } = await signIn({ username, password });
+      await signIn({ username, password });
       const { idToken } = (await fetchAuthSession({forceRefresh: true})).tokens ?? {};
       this.JwtToken = idToken?.toString();
     } catch (error) {

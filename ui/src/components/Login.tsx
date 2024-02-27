@@ -11,6 +11,7 @@ function Login({ onLogin }: ViewConceptProps) {
   const [error, setError] = useState('');
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    // prevent default behavior. no refresh needed
     event.preventDefault();
     if (username.trim() === '' || password.trim() === '') {
       setError('Username and password are required');

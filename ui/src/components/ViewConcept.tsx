@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
 import { Concept } from '../model/Concept';
 import { Dialog, DialogTitle, DialogContent, List, ListItem, ListItemText, Button, Link } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import './styles/ViewConceptStyles.css'
 
 type ViewConceptProps = {
   open: boolean;
@@ -95,7 +93,7 @@ function ViewConcept({ open, concept, allConcepts, onClose, onUpdateSelectedConc
               </ListItem>
             </List>
           </DialogContent>
-          <div id='buttons'>
+          <div style={{display: 'flex',justifyContent: 'flex-end', padding: '0.6rem'}}>
             <Button startIcon={<EditIcon />} onClick={handleEdit}>Edit</Button>
             <Button startIcon={<DeleteIcon />} onClick={handleDelete} color="error">Delete</Button>
           </div>

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Concept } from '../../model/Concept';
 import ConceptForm from './shared/ConceptForm';
 

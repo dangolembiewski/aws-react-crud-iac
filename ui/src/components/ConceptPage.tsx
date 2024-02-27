@@ -20,11 +20,10 @@ function ConceptPage({conceptService} : ConceptPageProps) {
   const [openUpdateConcept, setOpenUpdateConcept] = useState(false);
   const [openViewConcept, setOpenViewConcept] = useState(false);
 
-
-
   function handleSearchChange(event: { target: { value: React.SetStateAction<string>; }; }) {
     setSearchTerm(event.target.value);
   }
+  
   // Filter concepts based on search term in name or description
   const filteredConcepts = concepts.filter(concept =>
     concept.displayName.toLowerCase().includes(searchTerm.toLowerCase()) ||

@@ -2,7 +2,6 @@ import outputs from '../../../backend/outputs.json';
 import { Concept } from '../model/Concept';
 import axios, { AxiosRequestConfig } from 'axios';
 import { AuthService } from './AuthService';
-import { fetchAuthSession } from '@aws-amplify/auth';
 
 const conceptsUrl = outputs.ApiStack.ConceptsApiEndpoint8A639911 + 'concepts'
 
@@ -15,12 +14,17 @@ export class ConceptService {
   }
   
   private async getRequestConfig(): Promise<AxiosRequestConfig> {
-    const token = this.authService.getJwtToken();
-    return {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
+    try{
+      const token = await this.authService.getJwtToken();
+      console.log("Got token")
+      return {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+    } catch (error){
+      throw(error)
+    }
   }
   
   public async getConcepts(): Promise<Concept[]> {

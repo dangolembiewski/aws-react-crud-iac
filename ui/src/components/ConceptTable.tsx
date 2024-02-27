@@ -1,6 +1,4 @@
-// ConceptTable.js
-import React from 'react';
-import { Button, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tooltip } from '@mui/material';
 import { Concept } from '../model/Concept';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import EditIcon from '@mui/icons-material/Edit';
@@ -31,8 +29,8 @@ function ConceptTable({ concepts, onEditConcept, onDeleteConcept, onViewConcept 
           <TableRow>
             <TableCell style={{fontWeight: 'bold' }}>Name</TableCell>
             <TableCell style={{fontWeight: 'bold' }}>Description</TableCell>
-            <TableCell style={{fontWeight: 'bold' }}># Parents</TableCell>
-            <TableCell style={{fontWeight: 'bold' }}># Children</TableCell>
+            <TableCell style={{fontWeight: 'bold' }}># of Parents</TableCell>
+            <TableCell style={{fontWeight: 'bold' }}># of Children</TableCell>
             <TableCell style={{fontWeight: 'bold' }}>Actions</TableCell>
           </TableRow>
         </TableHead>
@@ -45,15 +43,21 @@ function ConceptTable({ concepts, onEditConcept, onDeleteConcept, onViewConcept 
             <TableCell>{Array.isArray(concept.childIds) ? concept.childIds.length : ''}</TableCell>
             <TableCell>
               <div style={{ display: 'flex', gap: '0.5em' }}>
-                <IconButton color="primary" onClick={() => handleView(concept)}>
-                  <VisibilityIcon />
-                </IconButton>
-                <IconButton color="primary" onClick={() => handleEdit(concept)}>
-                  <EditIcon />
-                </IconButton>
-                <IconButton color="secondary" onClick={() => handleDelete(concept.id)}>
-                  <DeleteIcon />
-                </IconButton>
+                <Tooltip title="View">
+                  <IconButton color="primary" onClick={() => handleView(concept)}>
+                    <VisibilityIcon />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title="Edit">
+                  <IconButton color="primary" onClick={() => handleEdit(concept)}>
+                    <EditIcon />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title="Delete">
+                  <IconButton color="secondary" onClick={() => handleDelete(concept.id)}>
+                    <DeleteIcon />
+                  </IconButton>
+                </Tooltip>
               </div>
             </TableCell>
           </TableRow>
