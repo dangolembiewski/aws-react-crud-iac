@@ -1,12 +1,12 @@
 {
+  "DataStack": {
+    "ExportsOutputRefConceptsTable75E07E08CAABBD23": "ConceptsTable-0e78e5957741",
+    "ExportsOutputFnGetAttConceptsTable75E07E08Arn663F78F2": "arn:aws:dynamodb:us-east-1:654654249945:table/ConceptsTable-0e78e5957741"
+  },
   "AuthStack": {
     "ConceptsUserPoolId": "us-east-1_IwzleIjx0",
     "ExportsOutputFnGetAttConceptsUserPoolEAF4F691ArnB034E2ED": "arn:aws:cognito-idp:us-east-1:654654249945:userpool/us-east-1_IwzleIjx0",
     "ConceptsUserPoolClientId": "2gmg2vjeof16bbsjosp9knp2ln"
-  },
-  "DataStack": {
-    "ExportsOutputRefConceptsTable75E07E08CAABBD23": "ConceptsTable-0e78e5957741",
-    "ExportsOutputFnGetAttConceptsTable75E07E08Arn663F78F2": "arn:aws:dynamodb:us-east-1:654654249945:table/ConceptsTable-0e78e5957741"
   },
   "UiDeploymentStack": {
     "ConceptsUrl": "d13bnhfa5niiid.cloudfront.net"
