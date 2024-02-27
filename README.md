@@ -8,12 +8,13 @@ Test Accounts:
 - username: employee  |  password: @Employee()1
 
 # AWS Services Utilized:
-- Api Gateway
-- lambda
-- Cognito
-- dynamoDb
-- s3 and Cloudfront for hosting
-- Amplify and AWS SDK for web app
+- Api Gateway (Proxy Requests)
+- lambda (Serverless Computing)
+- Cognito (Auth)
+- dynamoDb (Data Storage)
+- s3 (for hosting)
+- Cloudfront (CDN)
+- Amplify and AWS SDK (Web app to use aws services and Auth)
 
 # Tech Stack:
 ## Frontend:
