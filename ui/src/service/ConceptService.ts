@@ -15,8 +15,7 @@ export class ConceptService {
   }
   
   private async getRequestConfig(): Promise<AxiosRequestConfig> {
-    const { idToken } = (await fetchAuthSession()).tokens ?? {};
-    const token = idToken?.toString()
+    const token = await this.authService.getJwtToken();
     return {
       headers: {
         Authorization: `Bearer ${token}`,

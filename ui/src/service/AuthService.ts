@@ -15,6 +15,7 @@ export class AuthService {
 
   public isSignedIn: boolean = false;
   private JwtToken: string | undefined;
+  private tokenExpiration: Date | undefined;
 
   public async currentAuthenticatedUser(): Promise<string | undefined> {
     try {
@@ -26,6 +27,21 @@ export class AuthService {
     } catch (err) {
       console.log(err);
       return undefined;
+    }
+  }
+
+  public async getJwtToken(): Promise<string | undefined> {
+    if (!this.JwtToken || !this.tokenExpiration || this.tokenExpiration < new Date()) {
+      await this.refreshToken();
+    }
+    return this.JwtToken;
+  }
+
+  public async refreshToken() {
+    try {
+
+    } catch (err) {
+      console.log(err);
     }
   }
 
@@ -51,6 +67,7 @@ export class AuthService {
   public async logout() {
     try {
       await signOut();
+      this.JwtToken = undefined;
     } catch (error) {
       console.log('error signing out: ', error);
     }
