@@ -9,7 +9,6 @@ const authService = new AuthService();
 const conceptService = new ConceptService(authService);
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState<string | undefined>(undefined);
   
   useEffect(() => {
