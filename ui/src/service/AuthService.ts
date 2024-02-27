@@ -15,7 +15,6 @@ export class AuthService {
 
   public isSignedIn: boolean = false;
   private JwtToken: string | undefined;
-  private tokenExpiration: Date | undefined;
 
   public async currentAuthenticatedUser(): Promise<string | undefined> {
     try {
@@ -30,10 +29,7 @@ export class AuthService {
     }
   }
 
-  public async getJwtToken(): Promise<string | undefined> {
-    if (!this.JwtToken || !this.tokenExpiration || this.tokenExpiration < new Date()) {
-      await this.refreshToken();
-    }
+  public getJwtToken(): string | undefined {
     return this.JwtToken;
   }
 
@@ -47,7 +43,7 @@ export class AuthService {
 
   public async currentSession() {
     try {
-      const { accessToken, idToken } = (await fetchAuthSession()).tokens ?? {};
+      const { accessToken, idToken } = (await fetchAuthSession({forceRefresh: true})).tokens ?? {};
     } catch (err) {
       console.log(err);
     }
@@ -56,8 +52,7 @@ export class AuthService {
   public async login(username: string, password: string) {
     try {
       const { isSignedIn, nextStep } = await signIn({ username, password });
-      this.isSignedIn = isSignedIn;
-      const { idToken } = (await fetchAuthSession()).tokens ?? {};
+      const { idToken } = (await fetchAuthSession({forceRefresh: true})).tokens ?? {};
       this.JwtToken = idToken?.toString();
     } catch (error) {
       throw error;
