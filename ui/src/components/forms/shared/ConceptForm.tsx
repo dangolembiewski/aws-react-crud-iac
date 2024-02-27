@@ -11,7 +11,7 @@ function ConceptForm({ concept, onSubmit }: ConceptFormProps){
 
   const [formConcept, setFormConcept] = useState<Concept>(concept);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { name, value } = e.target;
     let newValue = value;
     if (name === "parentIds" || name === "childIds" || name === "alternateNames") {
@@ -23,7 +23,7 @@ function ConceptForm({ concept, onSubmit }: ConceptFormProps){
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     onSubmit(formConcept);
   };

@@ -8,16 +8,19 @@ import ConceptTable from './ConceptTable';
 import { Button, TextField } from '@mui/material';
 import ViewConcept from './ViewConcept';
 
+type ConceptPageProps = {
+  conceptService: ConceptService;
+};
 
-const conceptService = new ConceptService();
-
-function ConceptPage() {
+function ConceptPage({conceptService} : ConceptPageProps) {
   const [concepts, setConcepts] = useState<Concept[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedConcept, setSelectedConcept] = useState<Concept>();
   const [openAddConcept, setOpenAddConcept] = useState(false);
   const [openUpdateConcept, setOpenUpdateConcept] = useState(false);
   const [openViewConcept, setOpenViewConcept] = useState(false);
+
+
 
   function handleSearchChange(event: { target: { value: React.SetStateAction<string>; }; }) {
     setSearchTerm(event.target.value);

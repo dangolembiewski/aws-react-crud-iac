@@ -3,9 +3,10 @@ Added config-overrides.js and changed start script to be able to use ouputs file
 AWS Services:
 - Api Gateway
 - lambda
-- cognito
+- cognito. AWS Identity pools/federated identities  (explain why)
 - dynamoDb
 - s3 for hosting
+- 
 
 TODO:
 - optimized error handling and messages to user

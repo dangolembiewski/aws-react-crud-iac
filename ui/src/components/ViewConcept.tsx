@@ -17,23 +17,23 @@ type ViewConceptProps = {
 
 function ViewConcept({ open, concept, allConcepts, onClose, onUpdateSelectedConcept, onEditConcept, onDeleteConcept }: ViewConceptProps) {
   
-  const handleClose = () => {
+  function handleClose(){
     onClose();
   };
 
-  const handleEdit = () => {
+  function handleEdit(){
     if (concept) {
       onEditConcept(concept);
     }
   };
 
-  const handleDelete = () => {
+  function handleDelete(){
     if (concept) {
       onDeleteConcept(concept.id);
     }
   };
 
-  const handleLinkClick = (clickedConcept: Concept) => {
+  function handleLinkClick(clickedConcept: Concept){
     onUpdateSelectedConcept(clickedConcept);
   };
 
