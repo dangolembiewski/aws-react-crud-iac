@@ -78,7 +78,11 @@ function ViewConcept({ open, concept, allConcepts, onClose, onUpdateSelectedConc
                           {childConcept ? (
                             <Link href="#" onClick={() => handleLinkClick(childConcept)}>{childConcept.displayName}</Link>
                           ) : (
-                            <span>Child concept not found</span>
+                            <div style={{display: 'flex', flexDirection: 'column'}}>
+                              <span>Child concept not found</span>
+                              <span> ID: {childId}</span>
+                            </div>
+
                           )}
                         </ListItem>
                       );

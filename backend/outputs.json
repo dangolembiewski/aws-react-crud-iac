@@ -8,9 +8,6 @@
     "ExportsOutputFnGetAttConceptsUserPoolEAF4F691ArnB034E2ED": "arn:aws:cognito-idp:us-east-1:654654249945:userpool/us-east-1_IwzleIjx0",
     "ConceptsUserPoolClientId": "2gmg2vjeof16bbsjosp9knp2ln"
   },
-  "UiDeploymentStack": {
-    "ConceptsUrl": "d13bnhfa5niiid.cloudfront.net"
-  },
   "LambdaStack": {
     "ExportsOutputFnGetAttConceptsLambdaB6B3556FArnD1C2731B": "arn:aws:lambda:us-east-1:654654249945:function:LambdaStack-ConceptsLambdaB6B3556F-2mCebLHnUtFg"
   },

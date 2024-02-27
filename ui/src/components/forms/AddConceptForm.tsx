@@ -8,7 +8,7 @@ type AddConceptProps = {
 
 function AddConceptForm({ onAddConcept }: AddConceptProps) {
   const concept: Concept = {
-    id: '0',
+    id: '',
     displayName: '',
     description: '',
     parentIds: [],
