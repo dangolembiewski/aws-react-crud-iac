@@ -36,9 +36,13 @@ function ConceptTable({ concepts, onEditConcept, onDeleteConcept, onViewConcept 
         </TableHead>
         <TableBody>
           {concepts.map((concept) => (
-            <TableRow key={concept.id}>
-            <TableCell>{concept.displayName}</TableCell>
-            <TableCell>{concept.description}</TableCell>
+          <TableRow key={concept.id}>
+            <TableCell style={{ wordWrap: 'break-word', maxWidth: '18rem' }}>
+              {concept.displayName}
+            </TableCell>
+            <TableCell style={{ wordWrap: 'break-word', maxWidth: '25rem' }}>
+              {concept.description}
+            </TableCell>
             <TableCell>{Array.isArray(concept.parentIds) ? concept.parentIds.length : ''}</TableCell>
             <TableCell>{Array.isArray(concept.childIds) ? concept.childIds.length : ''}</TableCell>
             <TableCell>
